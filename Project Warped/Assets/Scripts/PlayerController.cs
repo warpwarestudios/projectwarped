@@ -27,18 +27,19 @@ public class PlayerController : MonoBehaviour {
 		vert = vertical;
 		hort = horizontal;
 
+		//determine direction pressed, change animation, add force to create movement
 		if (vertical > 0)
 		{
 			rigidbody2D.velocity = new Vector2(0,rigidbody2D.velocity.y);
 			animator.SetInteger("Direction", 2);
-			if(vertical * rigidbody2D.velocity.y < maxSpeed) 			
+			if(vertical * rigidbody2D.velocity.y < maxSpeed * 2) 			
 				rigidbody2D.AddForce(Vector2.up * vertical * moveForce); 
 		}
 		else if (vertical < 0)
 		{
 			rigidbody2D.velocity = new Vector2(0,rigidbody2D.velocity.y);
 			animator.SetInteger("Direction", 0);
-			if(vertical * rigidbody2D.velocity.y < maxSpeed) 			
+			if(vertical * rigidbody2D.velocity.y < maxSpeed * 2) 			
 				rigidbody2D.AddForce(Vector2.up * vertical * moveForce); 
 		}
 		else if (horizontal > 0)
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		else
 		{
+			//set idle animation then stop velocity
 			if(rigidbody2D.velocity.x > 0)
 			{
 				animator.SetInteger("Direction", 6);
@@ -75,8 +77,8 @@ public class PlayerController : MonoBehaviour {
 		if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed)
 			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
 
-		if(Mathf.Abs(rigidbody2D.velocity.y) > maxSpeed)
-			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,Mathf.Sign(rigidbody2D.velocity.y) * maxSpeed);
+		if(Mathf.Abs(rigidbody2D.velocity.y) > maxSpeed * 2 )
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,Mathf.Sign(rigidbody2D.velocity.y) * maxSpeed * 2);
 
 		velocity = rigidbody2D.velocity;
 	}
