@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{E4008E88-4B67-C1D7-73DF-4995FA11C857}") = "Project Warped", "Assembly-CSharp.csproj", "{260C47F1-98E7-855E-C5A8-1FCC982666D4}"
 EndProject
+Project("{E4008E88-4B67-C1D7-73DF-4995FA11C857}") = "Project Warped", "Assembly-CSharp-Editor.csproj", "{3FD24E9E-BD61-706F-E4E5-8937CEBDB868}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{260C47F1-98E7-855E-C5A8-1FCC982666D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{260C47F1-98E7-855E-C5A8-1FCC982666D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{260C47F1-98E7-855E-C5A8-1FCC982666D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FD24E9E-BD61-706F-E4E5-8937CEBDB868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FD24E9E-BD61-706F-E4E5-8937CEBDB868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FD24E9E-BD61-706F-E4E5-8937CEBDB868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FD24E9E-BD61-706F-E4E5-8937CEBDB868}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
+												GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -35,4 +41,5 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
+
 EndGlobal
