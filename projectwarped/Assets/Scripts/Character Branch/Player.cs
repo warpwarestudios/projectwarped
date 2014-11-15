@@ -3,13 +3,14 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+	// Variables
+	private int experience;
+	private Class specClass;
+	private Inventory inven;
+
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	void Start () {}
+
+	// Methods
+
 }

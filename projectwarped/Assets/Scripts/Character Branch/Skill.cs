@@ -3,13 +3,23 @@ using System.Collections;
 
 public class Skill : MonoBehaviour {
 
+	// Variables
+	private string name;
+	private int baseDamage;
+	private int baseHeal;
+	private int baseSanityHeal;
+	private int baseSanityCost;
+	private float baseCooldown;
+	private float overtime;
+	private float stat;
+
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	void Start () {}
+
+	// Methods
+	void Damage(){}
+	void Heal(){}
+	void sanityHeal(){}
+	void FlatStatIncrease(){}
+	void PercentStatIncrease(){}
 }

@@ -3,13 +3,28 @@ using System.Collections;
 
 public class Class : MonoBehaviour {
 
+	// Variables
+	private Ability activeSkills<Ability>();
+	private Ability passSkill;
+	private float healthModifier;
+	private float sanityModifier;
+
 	// Use this for initialization
-	void Start () {
-	
+	void Start () {}
+
+	// Methods
+	public Skill GetSkill()
+	{
+		return;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public float GetHealth()
+	{
+		return;
+	}
+
+	public float GetSanity()
+	{
+		return;
 	}
 }
