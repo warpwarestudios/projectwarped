@@ -4,7 +4,7 @@ using System.Collections;
 public class Skill : MonoBehaviour {
 
 	// Variables
-	private string name;
+	private string skillName;
 	private int baseDamage;
 	private int baseHeal;
 	private int baseSanityHeal;

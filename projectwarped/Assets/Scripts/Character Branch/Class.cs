@@ -15,16 +15,16 @@ public class Class : MonoBehaviour {
 	// Methods
 	public Skill GetSkill()
 	{
-		return;
+		return null;
 	}
 
 	public float GetHealth()
 	{
-		return;
+		return 0.0f;
 	}
 
 	public float GetSanity()
 	{
-		return;
+		return 0.0f;
 	}
 }

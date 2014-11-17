@@ -19,6 +19,6 @@ public class Item : MonoBehaviour {
 	// Methods
 	public int ItemScore()
 	{
-
+		return 0;
 	}
 }
