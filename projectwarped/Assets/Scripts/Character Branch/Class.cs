@@ -4,7 +4,7 @@ using System.Collections;
 public class Class : MonoBehaviour {
 
 	// Variables
-	private Ability activeSkills<Ability>();
+    private ArrayList activeSkills;
 	private Ability passSkill;
 	private float healthModifier;
 	private float sanityModifier;

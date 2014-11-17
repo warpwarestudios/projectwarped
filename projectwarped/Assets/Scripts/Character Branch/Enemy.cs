@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 
 	// Variables
-	private Ability abilityList<Ability>();
+	private ArrayList abilityList;
 
 	// Use this for initialization
 	void Start () {}

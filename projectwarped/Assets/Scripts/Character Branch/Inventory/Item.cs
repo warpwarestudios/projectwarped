@@ -4,7 +4,7 @@ using System.Collections;
 public class Item : MonoBehaviour {
 
 	// Variables
-	private Ability abilityList<Ability>();
+	private ArrayList abilityList;
 	private int baseExpVal;
 	private float expMultiplier;
 	private int baseSalvageVal;
