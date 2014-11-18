@@ -9,7 +9,7 @@ public class BuildScript{
 		{
 		string buildTarget = System.Environment.GetEnvironmentVariable ("C:\\Users\\Administrator\\Dropbox\\Public\\Project Warped");
 				if (buildTarget == null || buildTarget.Length == 0) {
-						throw new Exception ("UNITY_BUILD_TARGET -system property not defined, aborting.");
+			throw new Exception ("C:\\Users\\Administrator\\Dropbox\\Public\\Project Warped -system property not defined, aborting.");
 				}
 			
 				string[] scenes = { "Assets/GameLobby.unity", "Assets/GameSetting.unity", "Assets/MainGame.unity", "Assets/MainMenu.unity" };
