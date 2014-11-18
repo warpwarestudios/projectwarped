@@ -16,6 +16,7 @@ public class HealthBar: MonoBehaviour {
 	}
 	
 	void UpdateHealth () {
-		healthBar.value = health.currentHealth/health.maxHealth;
+		healthBar.value = (health.currentHealth/health.maxHealth);
+		Debug.Log (healthBar.value);
 	}
 }
