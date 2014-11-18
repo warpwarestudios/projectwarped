@@ -7,9 +7,9 @@ public class BuildScript{
 
 	static void BuildWindows64Player()
 		{
-		string buildTarget = System.Environment.GetEnvironmentVariable ("C:\\Users\\Administrator\\Dropbox\\Public\\Project Warped");
+            string buildTarget = System.Environment.GetEnvironmentVariable("UNITY_BUILD_TARGET");
 				if (buildTarget == null || buildTarget.Length == 0) {
-			throw new Exception ("C:\\Users\\Administrator\\Dropbox\\Public\\Project Warped -system property not defined, aborting.");
+                    throw new Exception("UNITY_BUILD_TARGET -system property not defined, aborting.");
 				}
 			
 				string[] scenes = { "Assets/GameLobby.unity", "Assets/GameSetting.unity", "Assets/MainGame.unity", "Assets/MainMenu.unity" };
