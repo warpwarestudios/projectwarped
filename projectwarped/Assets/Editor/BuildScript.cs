@@ -3,7 +3,7 @@ using System;
 
 public class BuildScript{
 
-	static void BuildWindows64Player()
+	public static void BuildWindows64Player()
 		{
             string buildTarget = System.Environment.GetEnvironmentVariable("UNITY_BUILD_TARGET");
 				if (buildTarget == null || buildTarget.Length == 0) {
