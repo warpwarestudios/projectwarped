@@ -3,5 +3,5 @@ using System.Collections;
 
 public class Damage : MonoBehaviour {
 
-	public int amountOfDamage = 1;
+	public float amountOfDamage = 0.01f;
 }

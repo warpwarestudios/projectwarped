@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Health: MonoBehaviour {
 	
-	public int maxHealth = 100;
-	public int _currentHealth = 100;
+	public float maxHealth = 1f;
+	public float _currentHealth = 1f;
 
-	public int currentHealth {
+	public float currentHealth {
 		get { 
 			return _currentHealth; 
 		}

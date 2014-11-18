@@ -4,7 +4,7 @@ using System.Collections;
 public class HealthBar: MonoBehaviour {
 	
 	public Health health;
-	
+	public UIProgressBar healthBar;
 	// sign up for the event when you're enabled
 	void OnEnable () {
 		if (health) health.onDamageTaken += UpdateHealth;
@@ -16,6 +16,6 @@ public class HealthBar: MonoBehaviour {
 	}
 	
 	void UpdateHealth () {
-		transform.localScale = new Vector3(health.currentHealth/(health.maxHealth/2), 0.2f, 1);
+		healthBar.value = health.currentHealth/health.maxHealth;
 	}
 }
