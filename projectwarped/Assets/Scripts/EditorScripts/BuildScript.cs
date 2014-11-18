@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEditor;
+﻿using UnityEditor;
 using System;
 
 public class BuildScript{
