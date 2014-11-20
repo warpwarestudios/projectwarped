@@ -5,6 +5,10 @@ public class Health: MonoBehaviour {
 	
 	public float maxHealth = 100f;
 	public float _currentHealth = 100f;
+<<<<<<< HEAD
+=======
+	public HUDText floatText = null;	
+>>>>>>> origin/enemyaiandhealth
 
 	public float currentHealth {
 		get { 
@@ -29,6 +33,13 @@ public class Health: MonoBehaviour {
 		Damage damage = collision.gameObject.GetComponent<Damage>();
 		if (damage) {
 			currentHealth -= damage.amountOfDamage;
+<<<<<<< HEAD
+=======
+			if (floatText != null) 
+			{
+				floatText.Add (damage.amountOfDamage, Color.red, 1.0f);
+			}
+>>>>>>> origin/enemyaiandhealth
 			onDamageTaken();
 		}
 	}
