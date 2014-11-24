@@ -6,6 +6,7 @@ public class RandomMatchmaker : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		PhotonNetwork.logLevel = PhotonLogLevel.Full;
 		PhotonNetwork.ConnectUsingSettings ("0.01");
 		//GameObject myGameObject = PhotonNetwork.Instantiate ("prefab", Vector2.zero, Quaternion.identity, 0);
 	}
