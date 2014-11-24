@@ -3,13 +3,15 @@ using System.Collections;
 
 public class Ability : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	Skill rangeAttack = new Skill ("Range Attack", Time.time, 1.25f, 1.25f, 1, 0);
+
+	public void MyClickFunction()
+	{
+		Debug.Log ("I was clicked");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void RangeAttack()
+	{
+		rangeAttack.GetCoolDown ();
+
 	}
 }
