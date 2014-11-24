@@ -33,7 +33,7 @@ public class Health: MonoBehaviour {
 			currentHealth -= damage.amountOfDamage;
 			if (floatText != null) 
 			{
-				floatText.Add (damage.amountOfDamage, Color.red, 1.0f);
+				floatText.Add(-damage.amountOfDamage, Color.red, 1.0f);
 			}
 			onDamageTaken();
 		}
