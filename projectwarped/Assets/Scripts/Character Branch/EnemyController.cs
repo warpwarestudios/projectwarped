@@ -17,10 +17,20 @@ public class EnemyController : MonoBehaviour {
 	private bool movingRight = false;
 	private bool movingDown = false;
 	private bool movingLeft = false;
+	private Transform sightStart, sightEnd;
+	private GameObject enemy;
+	private GameObject rayCastStart;
+	private GameObject rayCastEnd;
 	// Use this for initialization
 	void Start()
 	{
 		Flip ();
+		//enemy = GameObject.Find ("testEnemy").
+		//rayCastStart.GetComponentInChildren = enemy.transform.FindChild ("RayCastStart");
+		//sightStart = Vector2(rayCastEnd.transform.position.x, rayCastEnd.transform.position.y);
+		//rayCastEnd = enemy.transform.FindChild ("RayCastEnd");
+		//sightEnd = Vector2(rayCastEnd.transform.position.x, rayCastEnd.transform.position.y);
+
 		//animator = GetComponent<Animator>();
 	}
 	
@@ -35,6 +45,7 @@ public class EnemyController : MonoBehaviour {
 	void Update()
 	{
 		// enables sprite movement
+		//Raycasting ();
 		MovementChange ();
 		rigidbody2D.velocity = new Vector2 (Hmove * maxSpeed, Vmove * maxSpeed);
 		//animator.SetFloat ("Speed", Mathf.Abs (move));
@@ -46,7 +57,11 @@ public class EnemyController : MonoBehaviour {
 			Flip ();
 		
 	}
-	
+
+//	void Raycasting ()
+//	{
+//		Debug.DrawLine (sightStart, sightEnd, Color.green);
+//	}
 	void MovementChange()
 	{
 		if (Time.time >= overTime) 
