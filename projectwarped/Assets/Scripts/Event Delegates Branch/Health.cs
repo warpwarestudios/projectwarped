@@ -37,5 +37,11 @@ public class Health: MonoBehaviour {
 			}
 			onDamageTaken();
 		}
+
+		if (_currentHealth <= 0) 
+		{
+			Destroy(floatText.gameObject);
+			Destroy(this.gameObject);
+		}
 	}
 }
