@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Skill : MonoBehaviour {
+public abstract class Skill {
 
 	// Variables
 	private string skillName;
@@ -69,9 +69,12 @@ public class Skill : MonoBehaviour {
 		return range;
 	}
 
-	public void Damage(){}
+	//TODO: Need to think through this more...
+	public void meleeDamage();
+	public void rangedDamage();
 	public void Heal(){}
 	public void sanityHeal(){}
 	public void FlatStatIncrease(){}
 	public void PercentStatIncrease(){}
+	public abstract void Use();
 }
