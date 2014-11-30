@@ -14,10 +14,14 @@ public class EnemySpawner : MonoBehaviour {
 	void Start () {
 		hudText = (GameObject)Resources.Load("HUDText");
 		enemy = (GameObject)Resources.Load ("Enemies/" + enemyName);
-		uiRoot = GameObject.Find ("UI Root - Main Game");
+		uiRoot = GameObject.Find ("UI Root-MainGame");
 		if (enemy.Equals (null)) 
 		{
 			Debug.Log ("Enemy is null!");
+		}
+		if (hudText.Equals (null)) 
+		{
+			Debug.Log ("HudText is null!");
 		}
 	}
 	
@@ -36,13 +40,19 @@ public class EnemySpawner : MonoBehaviour {
 		GameObject newEnemy = Instantiate (enemy) as GameObject;
 		//Instantiate HUD Text
 		GameObject hud = Instantiate (hudText) as GameObject;
-		hud.transform.parent = uiRoot.transform;
-		//attach cameras to HUDText
+		//hud.transform.parent = uiRoot.transform;
+		//Following script
 		UIFollowTarget follow = hud.GetComponent<UIFollowTarget>();
-		follow.gameCamera = GameObject.Find ("Main Camera").camera;
-		follow.uiCamera = uiRoot.transform.FindChild ("Camera").camera;
 		//hook up HUDText to follow this enemy
 		follow.target = newEnemy.transform.FindChild("Target").transform;
-
+		//attach cameras to HUDText
+		follow.gameCamera = GameObject.FindGameObjectWithTag("MainCamera").camera;
+		follow.uiCamera = uiRoot.transform.FindChild ("Camera").camera;
+		//add hudText to enemy
+		Health eHealth = newEnemy.GetComponent<Health> ();
+		eHealth.floatText = hud.GetComponent<HUDText>();
+		//set healthbar to track health
+		HealthBar eHealthBar = hud.GetComponentInChildren<HealthBar> ();
+		eHealthBar.health = eHealth;
 	}
 }
