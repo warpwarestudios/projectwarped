@@ -1,51 +1,31 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public abstract class Skill {
+public class Skill{
 
 	// Variables
 	private string skillName;
-	private int baseDamage;
-	private int baseHeal;
-	private int baseSanityHeal;
-	private int baseSanityCost;
+	protected int baseDamage;
+	protected int baseHeal;
+	protected int baseSanityHeal;
+	protected int baseSanityCost;
 	private float range;
 	private float cooldown;
 	private float overtime;
-	private float stat;
+	protected float stat;
 
-	public Skill (string skillName, float cooldown, float overTime, float range, int baseDamage, int baseSanityCost)
+	//all possible variables
+	public Skill (string skillName, float cooldown, float overTime, float range, int baseDamage, int baseHeal, int baseSanityHeal, int baseSanityCost, float stat)
 	{
 		this.skillName = skillName;
 		this.cooldown = cooldown;
 		this.overtime = overTime;
 		this.range = range;
 		this.baseDamage = baseDamage;
-		this.baseSanityCost = baseSanityCost;
-	}
-
-	public Skill (string skillName, float cooldown, float overTime, float range, int baseDamage, int baseSanityCost, int baseHeal)
-	{
-		this.skillName = skillName;
-		this.cooldown = cooldown;
-		this.overtime = overTime;
-		this.range = range;
-		this.baseDamage = baseDamage;
-		this.baseSanityCost = baseSanityCost;
-		this.baseHeal = baseHeal;
-	}
-
-	public Skill (string skillName, float cooldown, float overtime, float range, int baseDamage, int baseSanityCost, int baseHeal, int baseSanityHeal)
-	{
-		this.skillName = skillName;
-		this.cooldown = cooldown;
-		this.overtime = overtime;
-		this.range = range;
-		this.baseDamage = baseDamage;
-		this.baseSanityCost = baseSanityCost;
 		this.baseHeal = baseHeal;
 		this.baseSanityHeal = baseSanityHeal;
-		
+		this.baseSanityCost = baseSanityCost;
+		this.stat = stat;
 	}
 	// Use this for initialization
 	// Methods
@@ -69,12 +49,11 @@ public abstract class Skill {
 		return range;
 	}
 
-	//TODO: Need to think through this more...
-	public void meleeDamage();
-	public void rangedDamage();
-	public void Heal(){}
-	public void sanityHeal(){}
-	public void FlatStatIncrease(){}
-	public void PercentStatIncrease(){}
-	public abstract void Use();
+	public virtual void meleeDamage(){}
+	public virtual void rangedDamage(){}
+	public virtual void Heal(){}
+	public virtual void sanityHeal(){}
+	public virtual void FlatStatIncrease(){}
+	public virtual void PercentStatIncrease(){}
+	public virtual void Use(){}
 }

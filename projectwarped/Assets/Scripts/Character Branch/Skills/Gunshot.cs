@@ -5,12 +5,12 @@ using System.Collections;
 public class Gunshot : Skill {
 
 	//constructor that initializes the skill constructor and fills in the values needed
-	public Gunshot() : base("Gunshot",1.0f,0,10,50,0)
+	public Gunshot() : base("Gunshot",1.0f,1f,10f,10,0,0,0,0f)
 	{
 
 	}
 
-	public override void Use()
+	public override void rangedDamage()
 	{
 
 	}
