@@ -9,9 +9,12 @@ public class PlayerController: MonoBehaviour {
 	// standard movement values
 	public float maxSpeed = 10f;
 	public bool facingRight = false;
+	public bool facingUp = false;
+	public bool facingDown = false;
+
 
 	//Damage Responce
-	public float takenDamage = 0.2f;
+	//public float takenDamage = 0.2f;
 
 	
 	// Use this for initialization
@@ -43,6 +46,17 @@ public class PlayerController: MonoBehaviour {
 			Flip ();
 		else if (Hmove < 0 && facingRight) 
 			Flip ();
+
+		// confirms vertical direction
+		if (Vmove > 0 && !facingUp) 
+			facingUp = !facingUp;
+		else if (Vmove < 0 && facingUp)
+			facingUp = !facingUp;
+
+		if (Vmove > 0 && facingDown) 
+			facingDown = !facingDown;
+		else if (Vmove < 0 && !facingDown)
+			facingDown = !facingDown;
 		
 	}
 	
@@ -55,7 +69,7 @@ public class PlayerController: MonoBehaviour {
 		transform.localScale = scale;
 	}
 
-	public IEnumerator TakenDamage()
+	/*public IEnumerator TakenDamage()
 	{
 		renderer.enabled = false;
 		yield return new WaitForSeconds(takenDamage);
@@ -73,6 +87,5 @@ public class PlayerController: MonoBehaviour {
 		yield return new WaitForSeconds(takenDamage);
 		renderer.enabled = true;
 		yield return new WaitForSeconds(takenDamage);
-
-	}
+	}*/
 }
