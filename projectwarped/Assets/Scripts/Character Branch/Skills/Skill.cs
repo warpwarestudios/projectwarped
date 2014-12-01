@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Skill{
+public class Skill : MonoBehaviour{
 
 	// Variables
 	private string skillName;
