@@ -40,7 +40,10 @@ public class Health: MonoBehaviour {
 
 		if (_currentHealth <= 0) 
 		{
-			Destroy(floatText.gameObject);
+			if(floatText)
+			{
+				Destroy(floatText.gameObject);
+			}
 			Destroy(this.gameObject);
 		}
 	}
