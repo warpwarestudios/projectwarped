@@ -19,7 +19,11 @@ public class Gunshot : Skill {
 
 	void Start()
 	{
-		bullet = (GameObject)Resources.Load("Bullet");
+		bullet = (GameObject)Resources.Load("TestBullet");
+		if (bullet.Equals (null)) 
+		{
+			Debug.Log ("Enemy is null!");
+		}
 		player = GameObject.Find ("TestPlayer");
 		playerDirection = player.GetComponent<PlayerController>();
 
