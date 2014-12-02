@@ -53,9 +53,8 @@ public class Gunshot : Skill {
 		}
 	}
 
-	public void Shoot(Vector2 directions, float angle)
+ 	private void Shoot(Vector2 directions, float angle)
 	{
-
 		GameObject newBullet = Instantiate (bullet) as GameObject;
 		newBullet.transform.parent = player.gameObject.transform;
 		newBullet.transform.position = new Vector2 (0, 0);
