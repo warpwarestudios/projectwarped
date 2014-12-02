@@ -15,7 +15,8 @@ public class MeleeAttack : Skill {
 	{
 		base.Start ();
 		meleeMove = (GameObject)Resources.Load("TestMelee");
-		coolDown = 0f;
+		cooldown = 1f;
+		range = 0.25f;
 		player = GameObject.Find ("TestPlayer");
 		playerDirection = player.GetComponent<PlayerController>();
 		
@@ -50,7 +51,8 @@ public class MeleeAttack : Skill {
 	
 	private void Slash(Vector2 directions, float angle)
 	{
-		GameObject newSlash = Instantiate (meleeMove, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
+		//TODO: Instantiate through Photon Networking
+		GameObject newSlash = Instantiate (meleeMove) as GameObject;
 		newSlash.transform.parent = player.gameObject.transform;
 		newSlash.transform.localPosition = new Vector3 (0,0,0);
 		newSlash.transform.localScale = new Vector3 (0.05f,0.05f,0.05f);

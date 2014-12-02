@@ -48,7 +48,7 @@ public abstract class Skill : MonoBehaviour{
 		this.skillName = "";
 		this.cooldown = 0f;
 		this.overtime = 0f;
-		this.range = 0.5f;
+		this.range = 0.0f;
 		this.baseDamage = 0;
 		this.baseHeal = 0;
 		this.baseSanityHeal = 0;

@@ -17,7 +17,8 @@ public class Gunshot : Skill {
 		bullet = (GameObject)Resources.Load("TestBullet");
 		player = GameObject.Find ("TestPlayer");
 		playerDirection = player.GetComponent<PlayerController>();
-		range = 0.01f;
+		cooldown = 2f;
+		range = 2f;
 	}
 	public void Update()
 	{
@@ -51,11 +52,13 @@ public class Gunshot : Skill {
 	{
 		GameObject newBullet = Instantiate (bullet, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
 		newBullet.transform.parent = player.gameObject.transform;
-		newBullet.transform.position = new Vector2 (player.transform.position.x + 50, player.transform.position.y + 0);
+		newBullet.transform.localPosition = new Vector3 (0,0,0);
+		newBullet.transform.localScale = new Vector3 (0.05f,0.05f,0.05f);
 		newBullet.transform.eulerAngles = new Vector3 (0, 0, angle);
 		newBullet.rigidbody2D.AddForce (directions);
 		coolDown = Time.time + cooldown;
-		Destroy (newBullet.gameObject, range);
+		newBullet.GetComponent<Bullet> ().range = range;
+		//Destroy (newBullet.gameObject);
 
 	}
 
