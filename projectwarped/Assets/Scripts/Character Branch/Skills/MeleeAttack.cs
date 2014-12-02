@@ -9,20 +9,18 @@ public class MeleeAttack : Skill {
 	private PlayerController playerDirection;
 	private Vector2 rightLeftSpeed = Vector2.right * 150;
 	private Vector2 upDownSpeed = Vector2.up * 150;
-	//constructor that initializes the skill constructor and fills in the values needed
-	public MeleeAttack() : base("Melee Attack",0.5f,0f,0.20f,10,0,0,0,0f)
-	{
-	}
-	
-	void Start()
-	{
-		meleeMove = (GameObject)Resources.Load("TestMelee");
 
+	
+	public void Start()
+	{
+		base.Start ();
+		meleeMove = (GameObject)Resources.Load("TestMelee");
+		coolDown = 0f;
 		player = GameObject.Find ("TestPlayer");
 		playerDirection = player.GetComponent<PlayerController>();
 		
 	}
-	void Update()
+	public void Update()
 	{
 		
 	}
@@ -52,13 +50,15 @@ public class MeleeAttack : Skill {
 	
 	private void Slash(Vector2 directions, float angle)
 	{
+		Debug.Log ("Swing!");
 		GameObject newSlash = Instantiate (meleeMove, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
-		//newBullet.transform.parent = player.gameObject.transform;
-		//newBullet.transform.position = new Vector2 (player.transform.position.x + 50, player.transform.position.y + 0);
+		newSlash.transform.parent = player.gameObject.transform;
+		newSlash.transform.position = new Vector3 (0,0,0);
+		newSlash.transform.localScale = new Vector3 (0.05f,0.05f,0.05f);
 		newSlash.transform.eulerAngles = new Vector3 (0, 0, angle);
 		newSlash.rigidbody2D.AddForce (directions);
 		coolDown = Time.time + GetCoolDown ();
-		Destroy (newSlash.gameObject, GetRange());
+		//Destroy (newSlash.gameObject, GetRange());
 		
 	}
 

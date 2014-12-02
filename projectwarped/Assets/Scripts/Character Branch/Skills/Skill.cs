@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Skill : MonoBehaviour{
+public abstract class Skill : MonoBehaviour{
 
 	// Variables
 	private string skillName;
@@ -14,18 +14,18 @@ public class Skill : MonoBehaviour{
 	private float overtime;
 	protected float stat;
 
-	//all possible variables
-	public Skill (string skillName, float cooldown, float overTime, float range, int baseDamage, int baseHeal, int baseSanityHeal, int baseSanityCost, float stat)
+	//Start method to initialize variables
+	public void Start()
 	{
-		this.skillName = skillName;
-		this.cooldown = cooldown;
-		this.overtime = overTime;
-		this.range = range;
-		this.baseDamage = baseDamage;
-		this.baseHeal = baseHeal;
-		this.baseSanityHeal = baseSanityHeal;
-		this.baseSanityCost = baseSanityCost;
-		this.stat = stat;
+		this.skillName = "";
+		this.cooldown = 0f;
+		this.overtime = 0f;
+		this.range = 1f;
+		this.baseDamage = 0;
+		this.baseHeal = 0;
+		this.baseSanityHeal = 0;
+		this.baseSanityCost = 0;
+		this.stat = 0f;
 	}
 	// Use this for initialization
 	// Methods

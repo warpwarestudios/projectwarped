@@ -30,7 +30,8 @@ public class Health: MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D collision) 
 	{
 		Damage damage = collision.gameObject.GetComponent<Damage> ();
-		if (damage) 
+		Debug.Log("Collision: " + collision.gameObject.tag + "GameObject: " + this.gameObject.tag);
+		if (damage && collision.gameObject.tag != this.gameObject.tag) 
 		{
 			currentHealth -= damage.amountOfDamage;
 			if (floatText != null) 
@@ -43,7 +44,8 @@ public class Health: MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D collision) 
 	{
 		Damage damage = collision.gameObject.GetComponent<Damage> ();
-		if (damage) 
+		Debug.Log("Collision: " + collision.gameObject.tag + "GameObject: " + this.gameObject.tag);
+		if (damage && collision.gameObject.tag != this.gameObject.tag) 
 		{
 				currentHealth -= damage.amountOfDamage;
 				if (floatText != null) 
