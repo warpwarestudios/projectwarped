@@ -50,15 +50,14 @@ public class MeleeAttack : Skill {
 	
 	private void Slash(Vector2 directions, float angle)
 	{
-		Debug.Log ("Swing!");
 		GameObject newSlash = Instantiate (meleeMove, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
 		newSlash.transform.parent = player.gameObject.transform;
-		newSlash.transform.position = new Vector3 (0,0,0);
+		newSlash.transform.localPosition = new Vector3 (0,0,0);
 		newSlash.transform.localScale = new Vector3 (0.05f,0.05f,0.05f);
 		newSlash.transform.eulerAngles = new Vector3 (0, 0, angle);
 		newSlash.rigidbody2D.AddForce (directions);
-		coolDown = Time.time + GetCoolDown ();
-		//Destroy (newSlash.gameObject, GetRange());
+		coolDown = Time.time + cooldown;
+		Destroy (newSlash.gameObject, range);
 		
 	}
 
