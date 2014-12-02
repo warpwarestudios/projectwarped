@@ -10,11 +10,14 @@ public class EnemySpawner : MonoBehaviour {
 	private GameObject enemy;
 	private GameObject hudText;
 	private GameObject uiRoot;
+//	private EnemyController enemyController;
+	private UIFollowTarget follow;
 	// Use this for initialization
 	void Start () {
 		hudText = (GameObject)Resources.Load("HUDText");
 		enemy = (GameObject)Resources.Load ("Enemies/" + enemyName);
 		uiRoot = GameObject.Find ("UI Root-MainGame");
+
 		if (enemy.Equals (null)) 
 		{
 			Debug.Log ("Enemy is null!");
@@ -42,7 +45,9 @@ public class EnemySpawner : MonoBehaviour {
 		GameObject hud = Instantiate (hudText) as GameObject;
 		//hud.transform.parent = uiRoot.transform;
 		//Following script
-		UIFollowTarget follow = hud.GetComponent<UIFollowTarget>();
+		follow = hud.GetComponent<UIFollowTarget>();
+	//	enemyController = newEnemy.GetComponent<EnemyController>();
+	//	enemyController.movePattern = enemyController.movePatternArray [Random.Range (0f, float.Parse(enemyController.movePatternArray.GetLength()))];
 		//hook up HUDText to follow this enemy
 		follow.target = newEnemy.transform.FindChild("Target").transform;
 		//attach cameras to HUDText

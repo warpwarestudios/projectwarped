@@ -7,25 +7,19 @@ public class Gunshot : Skill {
 	private GameObject bullet;
 	private GameObject player;
 	private float coolDown;
-	private float attackRate;
 	private PlayerController playerDirection;
-	private Vector2 rightLeftSpeed = Vector2.right * 500;
-	private Vector2 upDownSpeed = Vector2.up * 500;
-	private float range;
+	private Vector2 rightLeftSpeed = Vector2.right * 400;
+	private Vector2 upDownSpeed = Vector2.up * 400;
+
 	//constructor that initializes the skill constructor and fills in the values needed
 	public Gunshot() : base("Gunshot",0.5f,0f,1.25f,10,0,0,0,0f)
 	{
-		attackRate = GetCoolDown();
-		range = GetRange ();
 	}
 
 	void Start()
 	{
 		bullet = (GameObject)Resources.Load("TestBullet");
-		if (bullet.Equals (null)) 
-		{
-			Debug.Log ("Enemy is null!");
-		}
+
 		player = GameObject.Find ("TestPlayer");
 		playerDirection = player.GetComponent<PlayerController>();
 
@@ -60,13 +54,13 @@ public class Gunshot : Skill {
 
  	private void Shoot(Vector2 directions, float angle)
 	{
-		GameObject newBullet = Instantiate (bullet) as GameObject;
+		GameObject newBullet = Instantiate (bullet, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
 		//newBullet.transform.parent = player.gameObject.transform;
 		//newBullet.transform.position = new Vector2 (player.transform.position.x + 50, player.transform.position.y + 0);
 		newBullet.transform.eulerAngles = new Vector3 (0, 0, angle);
 		newBullet.rigidbody2D.AddForce (directions);
-		coolDown = Time.time + attackRate;
-		Destroy (newBullet.gameObject, range);
+		coolDown = Time.time + GetCoolDown();
+		Destroy (newBullet.gameObject, GetRange());
 
 	}
 

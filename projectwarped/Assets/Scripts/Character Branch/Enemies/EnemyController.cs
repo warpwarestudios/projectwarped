@@ -41,11 +41,16 @@ public class EnemyController : MonoBehaviour {
 	private GameObject enemy;
 	private GameObject rayCastStart;
 	private GameObject rayCastEnd;
+	public MovementPattern [] movePatternArray;
+
 	// Use this for initialization
-	void Awake()
+	void Start()
 	{
+		movePatternArray = new MovementPattern[]{MovementPattern.Clockwise, MovementPattern.CounterClockwise, MovementPattern.DownToUp, MovementPattern.LeftToRight, 
+			MovementPattern.None, MovementPattern.RightToLeft, MovementPattern.UpToDown};
 		Flip ();
 		MoveSwitch ();
+
 
 
 		//enemy = GameObject.Find ("testEnemy").

@@ -27,24 +27,39 @@ public class Health: MonoBehaviour {
 	public delegate void OnDamageTaken();
 	public event OnDamageTaken onDamageTaken = delegate {};
 	
-	void OnCollisionEnter2D (Collision2D collision) {
-		Damage damage = collision.gameObject.GetComponent<Damage>();
-		if (damage) {
+	void OnCollisionEnter2D (Collision2D collision) 
+	{
+		Damage damage = collision.gameObject.GetComponent<Damage> ();
+		if (damage) 
+		{
 			currentHealth -= damage.amountOfDamage;
 			if (floatText != null) 
 			{
-				floatText.Add(-damage.amountOfDamage, Color.red, 1.0f);
+				floatText.Add (-damage.amountOfDamage, Color.red, 1.0f);
 			}
-			onDamageTaken();
-		}
-
-		if (_currentHealth <= 0) 
-		{
-			if(floatText)
-			{
-				Destroy(floatText.gameObject);
-			}
-			Destroy(this.gameObject);
+			onDamageTaken ();
 		}
 	}
+	void OnTriggerEnter2D (Collider2D collision) 
+	{
+		Damage damage = collision.gameObject.GetComponent<Damage> ();
+		if (damage) 
+		{
+				currentHealth -= damage.amountOfDamage;
+				if (floatText != null) 
+				{
+					floatText.Add (-damage.amountOfDamage, Color.red, 1.0f);
+				}
+				onDamageTaken ();
+		}
+		if (_currentHealth <= 0) 
+		{
+				if (floatText) 
+				{
+					Destroy (floatText.gameObject);
+				}
+				Destroy (this.gameObject);
+		}
+	}
+
 }
