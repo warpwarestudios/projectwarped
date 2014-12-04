@@ -10,8 +10,6 @@ public class EnemyController : MonoBehaviour {
 	public float maxSpeed = 50f;
 	public bool facingRight = false;
 
-
-
 	private float Hmove;
 	private float Vmove;
 	public float delay = 5f;
@@ -26,6 +24,8 @@ public class EnemyController : MonoBehaviour {
 	private bool upAndDown = false;
 	private bool leftAndRight = false;
 
+	private EnemyAggro eAggro;
+
 	public enum MovementPattern{
 				CounterClockwise,
 				Clockwise,
@@ -36,29 +36,18 @@ public class EnemyController : MonoBehaviour {
 				None
 		};
 	public MovementPattern movePattern;
-
-	private Transform sightStart, sightEnd;
+	
 	private GameObject enemy;
-	private GameObject rayCastStart;
-	private GameObject rayCastEnd;
 	public MovementPattern [] movePatternArray;
 
 	// Use this for initialization
 	void Start()
 	{
+		eAggro = this.GetComponent<EnemyAggro>();
 		movePatternArray = new MovementPattern[]{MovementPattern.Clockwise, MovementPattern.CounterClockwise, MovementPattern.DownToUp, MovementPattern.LeftToRight, 
 			MovementPattern.None, MovementPattern.RightToLeft, MovementPattern.UpToDown};
 		Flip ();
 		MoveSwitch ();
-
-
-
-		//enemy = GameObject.Find ("testEnemy").
-		//rayCastStart.GetComponentInChildren = enemy.transform.FindChild ("RayCastStart");
-		//sightStart = Vector2(rayCastEnd.transform.position.x, rayCastEnd.transform.position.y);
-		//rayCastEnd = enemy.transform.FindChild ("RayCastEnd");
-		//sightEnd = Vector2(rayCastEnd.transform.position.x, rayCastEnd.transform.position.y);
-
 		//animator = GetComponent<Animator>();
 	}
 	
@@ -73,9 +62,16 @@ public class EnemyController : MonoBehaviour {
 	void Update()
 	{
 		// enables sprite movement
-		//Raycasting ();
-		MovementChange ();
-		rigidbody2D.velocity = new Vector2 (Hmove * maxSpeed, Vmove * maxSpeed);
+		if (eAggro.spotted) 
+		{
+			eAggro.Aggro ();
+		} 
+	    else 
+		{
+			MovementChange ();
+			rigidbody2D.velocity = new Vector2 (Hmove * maxSpeed, Vmove * maxSpeed);
+		}
+
 		//animator.SetFloat ("Speed", Mathf.Abs (move));
 		
 		//Flips Sprite
@@ -235,6 +231,8 @@ public class EnemyController : MonoBehaviour {
 	void MoveRight()
 	{
 		Hmove = Time.deltaTime;
+		Vector2 scale = transform.localScale;
+		scale.x *= 1;
 		Vmove = 0;
 		overTime = Time.time + delay;
 	}
@@ -242,6 +240,8 @@ public class EnemyController : MonoBehaviour {
 	void MoveLeft()
 	{
 		Hmove = -Time.deltaTime;
+		Vector2 scale = transform.localScale;
+		scale.x *= -1;
 		Vmove = 0;
 		overTime = Time.time + delay;
 	}
@@ -249,6 +249,8 @@ public class EnemyController : MonoBehaviour {
 	void MoveUp()
 	{
 		Hmove = 0;
+		Vector2 scale = transform.localScale;
+		scale.y *= 1;
 		Vmove = Time.deltaTime;
 		overTime = Time.time + delay;
 	}
@@ -256,6 +258,8 @@ public class EnemyController : MonoBehaviour {
 	void MoveDown()
 	{
 		Hmove = 0;
+		Vector2 scale = transform.localScale;
+		scale.y *= -1;
 		Vmove = -Time.deltaTime;
 		overTime = Time.time + delay;
 	}
