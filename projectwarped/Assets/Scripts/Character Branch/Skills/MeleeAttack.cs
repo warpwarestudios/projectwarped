@@ -54,12 +54,13 @@ public class MeleeAttack : Skill {
 		//TODO: Instantiate through Photon Networking
 		GameObject newSlash = Instantiate (meleeMove) as GameObject;
 		newSlash.transform.parent = player.gameObject.transform;
-		newSlash.transform.localPosition = new Vector3 (0,0,0);
+		newSlash.transform.localPosition = new Vector3 (0,0,-5);
 		newSlash.transform.localScale = new Vector3 (0.05f,0.05f,0.05f);
 		newSlash.transform.eulerAngles = new Vector3 (0, 0, angle);
 		newSlash.rigidbody2D.AddForce (directions);
 		coolDown = Time.time + cooldown;
-		Destroy (newSlash.gameObject, range);
+		newSlash.GetComponent<Melee> ().range = range;
+
 		
 	}
 
