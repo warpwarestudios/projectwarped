@@ -10,11 +10,11 @@ public class EnemyAggro : MonoBehaviour {
 	private GameObject rayStart;
 	private GameObject rayEnd;
 	public float minDist = 5;
-	public float maxSpeed = 4;
+	public float maxSpeed = 20;
 
 	void Start()
 	{
-		player = GameObject.Find ("TestPlayer");
+		player = GameObject.FindWithTag ("Player");
 		rayStart = this.transform.Find ("RaycastStart").gameObject;
 		rayEnd = this.transform.Find("RayCastEnd").gameObject;
 	}
@@ -25,11 +25,9 @@ public class EnemyAggro : MonoBehaviour {
 
 	public void Aggro()
 	{
-		this.transform.LookAt (player.transform);
-
 		if (Vector2.Distance (transform.position, player.transform.position) >= minDist) 
 		{
-			this.transform.position += transform.forward * maxSpeed * Time.deltaTime;
+			this.rigidbody2D.velocity = Vector2.MoveTowards(transform.position, player.transform.position, maxSpeed * Time.deltaTime);
 		}
 	}
 
