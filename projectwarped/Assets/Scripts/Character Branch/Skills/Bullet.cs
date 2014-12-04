@@ -5,10 +5,10 @@ public class Bullet : MonoBehaviour
 {
 
 	public float range;
-
+	
 	public void Update()
 	{
-		if (this.transform.position.x > range) 
+		if (this.transform.position.x >= range) 
 		{
 			Destroy(gameObject);
 		}
