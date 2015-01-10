@@ -8,7 +8,6 @@ public class RandomMatchmaker : MonoBehaviour {
 	{
 		PhotonNetwork.ConnectUsingSettings ("0.01");
 		PhotonNetwork.logLevel = PhotonLogLevel.Full;
-		//GameObject myGameObject = PhotonNetwork.Instantiate ("prefab", Vector2.zero, Quaternion.identity, 0);
 	}
 
 	void OnPhotonRandomJoinFailed () 
@@ -20,6 +19,13 @@ public class RandomMatchmaker : MonoBehaviour {
 	void OnJoinedLobby () 
 	{
 		PhotonNetwork.JoinRandomRoom ();
+	}
+
+	void OnJoinedRoom()
+	{
+		GameObject myGameObject = PhotonNetwork.Instantiate ("TestPlayer", Vector2.zero, Quaternion.identity, 0);
+		//CharacterControl controller = monster.GetComponent<CharacterControl>();
+		//controller.enabled = true;
 	}
 
 	// this may be unneccesary for NGUI
