@@ -10,6 +10,11 @@ public class RandomEnemyMovement : MonoBehaviour {
 	private float overTime;
 	private int randomDirection;
 	
+	public bool facingRight = false;
+	public bool facingUp = false;
+	public bool facingDown = false;
+	public bool facingLeft = false;
+	
 	private EnemyAggro eAggro;
 	
 	// Use this for initialization
@@ -37,34 +42,32 @@ public class RandomEnemyMovement : MonoBehaviour {
 	
 	void MovementChange()
 	{
-		if (Time.time >= overTime) {
+		if (Time.time >= overTime) 
+		{
 			randomDirection = (int) Random.Range (1f, 4.9f);
 			
 			switch (randomDirection) 
 			{
-			case 1:
-			{
-				MoveRight ();
-				
-				break;
-			}
-			case 2:
-			{
-				MoveDown ();
-				break;
-			}
-			case 3:
-			{
-				MoveLeft ();
-				
-				break;
-			}
-			case 4:
-			{
-				MoveUp ();
-				
-				break;
-			}
+				case 1:
+				{
+					MoveRight ();				
+					break;
+				}
+				case 2:
+				{
+					MoveDown ();				
+					break;
+				}
+				case 3:
+				{
+					MoveLeft ();			
+					break;
+				}
+				case 4:
+				{
+					MoveUp ();
+					break;
+				}
 			}
 		}
 	}
@@ -76,7 +79,7 @@ public class RandomEnemyMovement : MonoBehaviour {
 			switch (randomDirection) {
 			case 1:
 			{
-				MoveLeft ();
+				MoveLeft ();	
 				randomDirection = (int) Random.Range (1f, 4.9f);
 				break;
 			}
@@ -103,8 +106,41 @@ public class RandomEnemyMovement : MonoBehaviour {
 		
 	}
 	
+	void faceRight()
+	{
+		facingRight = true;
+		facingDown = false;
+		facingLeft = false;
+		facingUp = false;
+	}
+	
+	void faceDown()
+	{
+		facingRight = false;
+		facingDown = true;
+		facingLeft = false;
+		facingUp = false;
+	}
+	
+	void faceLeft()
+	{
+		facingRight = false;
+		facingDown = false;
+		facingLeft = true;
+		facingUp = false;	
+	}
+	
+	void faceUp()
+	{
+		facingRight = false;
+		facingDown = false;
+		facingLeft = false;
+		facingUp = true;
+	}
+	
 	void MoveRight()
 	{
+		faceRight();
 		Hmove = Time.deltaTime;
 		Vector2 scale = transform.localScale;
 		scale.x *= 1;
@@ -114,6 +150,7 @@ public class RandomEnemyMovement : MonoBehaviour {
 	
 	void MoveLeft()
 	{
+		faceLeft();
 		Hmove = -Time.deltaTime;
 		Vector2 scale = transform.localScale;
 		scale.x *= -1;
@@ -123,6 +160,7 @@ public class RandomEnemyMovement : MonoBehaviour {
 	
 	void MoveUp()
 	{
+		faceUp();
 		Hmove = 0;
 		Vector2 scale = transform.localScale;
 		scale.y *= 1;
@@ -132,6 +170,7 @@ public class RandomEnemyMovement : MonoBehaviour {
 	
 	void MoveDown()
 	{
+		faceDown();
 		Hmove = 0;
 		Vector2 scale = transform.localScale;
 		scale.y *= -1;
