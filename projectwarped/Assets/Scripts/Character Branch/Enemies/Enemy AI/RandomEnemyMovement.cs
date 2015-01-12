@@ -72,6 +72,34 @@ public class RandomEnemyMovement : MonoBehaviour {
 		}
 	}
 	
+	void LookAround()
+	{
+		randomDirection = (int) Random.Range (1f, 4.9f);
+		
+		switch (randomDirection) 
+		{
+			case 1:
+			{
+				faceRight ();				
+				break;
+			}
+			case 2:
+			{
+				faceDown ();				
+				break;
+			}
+			case 3:
+			{
+				faceLeft ();			
+				break;
+			}
+			case 4:
+			{
+				faceUp ();
+				break;
+			}
+		}
+	}
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		if (coll.gameObject.tag == "Enemy" || coll.gameObject.tag == "Collision") 
