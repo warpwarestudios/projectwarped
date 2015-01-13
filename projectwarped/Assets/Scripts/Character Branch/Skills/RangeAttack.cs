@@ -17,7 +17,7 @@ public class RangeAttack : Skill {
 	{
 		base.Start ();
 		bullet = (GameObject)Resources.Load("TestBullet");
-		player = GameObject.FindWithTag ("Player");
+		player = GameObject.Find ("TestPlayer");
 		skillGen = player.transform.Find ("Skill").gameObject;
 		playerDirection = player.GetComponent<PlayerController>();
 		cooldown = 1f;

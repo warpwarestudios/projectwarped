@@ -93,11 +93,11 @@ public class EnemyAggro : MonoBehaviour {
 			Debug.DrawLine (rayStart.transform.position, rayStart.transform.position + leftRay, Color.red);
 			spotted = Physics2D.Linecast (rayStart.transform.position, rayStart.transform.position + leftRay, 1 << LayerMask.NameToLayer ("Player"));
 			Debug.DrawLine (rayStart.transform.position, rayStart.transform.position + leftMiddleRay, Color.magenta);
-			spotted = Physics2D.Linecast (rayStart.transform.position, rayStart.transform.position + leftRay, 1 << LayerMask.NameToLayer ("Player"));
+			spotted = Physics2D.Linecast (rayStart.transform.position, rayStart.transform.position + leftMiddleRay, 1 << LayerMask.NameToLayer ("Player"));
 			Debug.DrawLine (rayStart.transform.position, rayStart.transform.position + middleRay, Color.green);
 			spotted = Physics2D.Linecast (rayStart.transform.position, rayStart.transform.position + middleRay, 1 << LayerMask.NameToLayer ("Player"));
 			Debug.DrawLine (rayStart.transform.position, rayStart.transform.position + rightMiddleRay, Color.cyan);
-			spotted = Physics2D.Linecast (rayStart.transform.position, rayStart.transform.position + leftRay, 1 << LayerMask.NameToLayer ("Player"));
+			spotted = Physics2D.Linecast (rayStart.transform.position, rayStart.transform.position + rightMiddleRay, 1 << LayerMask.NameToLayer ("Player"));
 			Debug.DrawLine (rayStart.transform.position, rayStart.transform.position + rightRay, Color.blue);
 			spotted = Physics2D.Linecast (rayStart.transform.position, rayStart.transform.position + rightRay, 1 << LayerMask.NameToLayer ("Player"));
 	
