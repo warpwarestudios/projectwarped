@@ -39,7 +39,7 @@ public class EnemyAggro : MonoBehaviour {
 		Raycasting ();
 	}
 
-	public void Aggro()
+	public IEnumerator Aggro()
 	{
 		
 			if (Vector2.Distance (transform.position, player.transform.position) >= (rayDistance * 10)) 
@@ -54,6 +54,7 @@ public class EnemyAggro : MonoBehaviour {
 				}
 				
 			}
+		yield return null;
 	}
 
 	void Raycasting ()

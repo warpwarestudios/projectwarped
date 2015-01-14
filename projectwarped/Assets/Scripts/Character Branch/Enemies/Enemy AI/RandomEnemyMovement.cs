@@ -29,12 +29,13 @@ public class RandomEnemyMovement : MonoBehaviour {
 	{
 		if (eAggro.spotted) 
 		{
-			eAggro.Aggro ();
+			eAggro.StartCoroutine(eAggro.Aggro());
 		} 
-		else 
+		else
 		{
 			MovementChange ();
-			rigidbody2D.velocity = new Vector2 (Hmove * maxSpeed, Vmove * maxSpeed);
+			this.rigidbody2D.velocity = new Vector2 (Hmove * maxSpeed, Vmove * maxSpeed);
+			StartCoroutine(LookAround(5,5));	
 		}
 		
 		
@@ -50,7 +51,7 @@ public class RandomEnemyMovement : MonoBehaviour {
 			{
 				case 1:
 				{
-					MoveRight ();				
+					MoveRight ();			
 					break;
 				}
 				case 2:
@@ -72,33 +73,43 @@ public class RandomEnemyMovement : MonoBehaviour {
 		}
 	}
 	
-	void LookAround()
+	public IEnumerator LookAround(float delay, float duration)
 	{
-		randomDirection = (int) Random.Range (1f, 4.9f);
-		
-		switch (randomDirection) 
+		yield return new WaitForSeconds (delay);
+		float elapsedTime = 0;
+		while (elapsedTime >= duration)
 		{
-			case 1:
+			randomDirection = (int) Random.Range (1f, 4.9f);
+			
+			switch (randomDirection) 
 			{
-				faceRight ();				
-				break;
+				case 1:
+				{
+					faceRight ();				
+					break;
+				}
+				case 2:
+				{
+					faceDown ();				
+					break;
+				}
+				case 3:
+				{
+					faceLeft ();			
+					break;
+				}
+				case 4:
+				{
+					faceUp ();
+					break;
+				}
 			}
-			case 2:
-			{
-				faceDown ();				
-				break;
-			}
-			case 3:
-			{
-				faceLeft ();			
-				break;
-			}
-			case 4:
-			{
-				faceUp ();
-				break;
-			}
+			
+			elapsedTime += Time.deltaTime;
+			yield return null;
 		}
+		
+		yield return null;
 	}
 	void OnCollisionEnter2D(Collision2D coll)
 	{
