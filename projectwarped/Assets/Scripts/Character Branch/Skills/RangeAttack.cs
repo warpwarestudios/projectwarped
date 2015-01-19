@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Gunshot : Skill {
+public class RangeAttack : Skill {
 
 	private GameObject bullet;
 	private GameObject player;
@@ -20,7 +20,7 @@ public class Gunshot : Skill {
 		player = GameObject.Find ("TestPlayer");
 		skillGen = player.transform.Find ("Skill").gameObject;
 		playerDirection = player.GetComponent<PlayerController>();
-		cooldown = 2f;
+		cooldown = 1f;
 		range = 2f;
 	}
 	public void Update()
@@ -36,7 +36,7 @@ public class Gunshot : Skill {
 			{
 				Shoot(rightLeftSpeed, 1, 0, 0);
 			}
-			else if (playerDirection.facingLeft)
+			else if (playerDirection.facingLeft) 
 			{
 				Shoot(-rightLeftSpeed, 1, 0, 180);
 			}
