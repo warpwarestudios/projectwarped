@@ -6,10 +6,13 @@ public class RandomEnemyMovement : MonoBehaviour {
 	public float maxSpeed = 50f;
 	private float Hmove;
 	private float Vmove;
-	public float delay = 5f;
-	private float overTime;
+	public float movementDelay = 5f;
+	public float lookAroundDelay = 5f;
+	private float movementOverTime;
+	private float lookAroundOverTime;
 	private int randomDirection;
-	
+	private bool stopMove = false;
+
 	public bool facingRight = false;
 	public bool facingUp = false;
 	public bool facingDown = false;
@@ -33,9 +36,15 @@ public class RandomEnemyMovement : MonoBehaviour {
 		} 
 		else
 		{
-			MovementChange ();
-			this.rigidbody2D.velocity = new Vector2 (Hmove * maxSpeed, Vmove * maxSpeed);
-			StartCoroutine(LookAround(5,5));	
+			if(stopMove == false)
+			{
+				this.rigidbody2D.velocity = new Vector2 (Hmove * maxSpeed, Vmove * maxSpeed);
+				MovementChange ();
+			}
+			else
+			{
+				LookAround();
+			}
 		}
 		
 		
@@ -43,11 +52,11 @@ public class RandomEnemyMovement : MonoBehaviour {
 	
 	void MovementChange()
 	{
-		if (Time.time >= overTime) 
+		if (Time.time >= movementOverTime) 
 		{
 			randomDirection = (int) Random.Range (1f, 4.9f);
 			
-			switch (randomDirection) 
+			switch (randomDirection)
 			{
 				case 1:
 				{
@@ -71,13 +80,16 @@ public class RandomEnemyMovement : MonoBehaviour {
 				}
 			}
 		}
+		else
+		{
+			stopMove = true;
+		}
 	}
 	
-	public IEnumerator LookAround(float delay, float duration)
+	void LookAround()
 	{
-		yield return new WaitForSeconds (delay);
-		float elapsedTime = 0;
-		while (elapsedTime >= duration)
+		int count = 0;
+		if (Time.time >= lookAroundOverTime)
 		{
 			randomDirection = (int) Random.Range (1f, 4.9f);
 			
@@ -85,31 +97,43 @@ public class RandomEnemyMovement : MonoBehaviour {
 			{
 				case 1:
 				{
-					faceRight ();				
+					faceRight ();
+					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
+					count++;			
 					break;
 				}
 				case 2:
 				{
-					faceDown ();				
+					faceDown ();
+					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
+					count++;		
 					break;
 				}
+				
 				case 3:
 				{
-					faceLeft ();			
+					faceLeft ();
+					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
+					count++;
 					break;
 				}
 				case 4:
 				{
 					faceUp ();
+					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
+					count++;
 					break;
 				}
 			}
 			
-			elapsedTime += Time.deltaTime;
-			yield return null;
 		}
 		
-		yield return null;
+		if (count >= 4)
+		{
+			stopMove = false;
+			count = 0;
+		}
+		
 	}
 	void OnCollisionEnter2D(Collision2D coll)
 	{
@@ -184,7 +208,7 @@ public class RandomEnemyMovement : MonoBehaviour {
 		Vector2 scale = transform.localScale;
 		scale.x *= 1;
 		Vmove = 0;
-		overTime = Time.time + delay;
+		movementOverTime = Time.time + movementDelay;
 	}
 	
 	void MoveLeft()
@@ -194,7 +218,7 @@ public class RandomEnemyMovement : MonoBehaviour {
 		Vector2 scale = transform.localScale;
 		scale.x *= -1;
 		Vmove = 0;
-		overTime = Time.time + delay;
+		movementOverTime = Time.time + movementDelay;
 	}
 	
 	void MoveUp()
@@ -204,7 +228,7 @@ public class RandomEnemyMovement : MonoBehaviour {
 		Vector2 scale = transform.localScale;
 		scale.y *= 1;
 		Vmove = Time.deltaTime;
-		overTime = Time.time + delay;
+		movementOverTime = Time.time + movementDelay;
 	}
 	
 	void MoveDown()
@@ -214,6 +238,6 @@ public class RandomEnemyMovement : MonoBehaviour {
 		Vector2 scale = transform.localScale;
 		scale.y *= -1;
 		Vmove = -Time.deltaTime;
-		overTime = Time.time + delay;
+		movementOverTime = Time.time + movementDelay;
 	}
 }
