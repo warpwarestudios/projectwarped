@@ -11,7 +11,7 @@ public class RandomEnemyMovement : MonoBehaviour {
 	private float movementOverTime;
 	private float lookAroundOverTime;
 	private int randomDirection;
-	private bool stopMove = false;
+	public bool stopMove = false;
 
 	public bool facingRight = false;
 	public bool facingUp = false;
@@ -36,15 +36,15 @@ public class RandomEnemyMovement : MonoBehaviour {
 		} 
 		else
 		{
-			if(stopMove == false)
-			{
+		//	if(stopMove == false)
+		//	{
 				this.rigidbody2D.velocity = new Vector2 (Hmove * maxSpeed, Vmove * maxSpeed);
 				MovementChange ();
-			}
-			else
-			{
-				LookAround();
-			}
+		//	}
+		//	else
+			//{
+				//LookAround();
+			//}
 		}
 		
 		
@@ -86,55 +86,56 @@ public class RandomEnemyMovement : MonoBehaviour {
 		}
 	}
 	
-	void LookAround()
-	{
-		int count = 0;
-		if (Time.time >= lookAroundOverTime)
-		{
-			randomDirection = (int) Random.Range (1f, 4.9f);
-			
-			switch (randomDirection) 
-			{
-				case 1:
-				{
-					faceRight ();
-					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
-					count++;			
-					break;
-				}
-				case 2:
-				{
-					faceDown ();
-					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
-					count++;		
-					break;
-				}
-				
-				case 3:
-				{
-					faceLeft ();
-					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
-					count++;
-					break;
-				}
-				case 4:
-				{
-					faceUp ();
-					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
-					count++;
-					break;
-				}
-			}
-			
-		}
+//	void LookAround()
+//	{
+//		int count = 0;
+//		
+//		if (Time.time >= lookAroundOverTime)
+//		{
+//			randomDirection = (int) Random.Range (1f, 4.9f);
+//			
+//			switch (randomDirection) 
+//			{
+//				case 1:
+//				{
+//					faceRight ();
+//					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
+//					count++;			
+//					break;
+//				}
+//				case 2:
+//				{
+//					faceDown ();
+//					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
+//					count++;		
+//					break;
+//				}
+//				
+//				case 3:
+//				{
+//					faceLeft ();
+//					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
+//					count++;
+//					break;
+//				}
+//				case 4:
+//				{
+//					faceUp ();
+//					lookAroundOverTime = Time.deltaTime + lookAroundDelay;
+//					count++;
+//					break;
+//				}
+//			}
+//			
+//		}
+//		
+//		if (count >= 4)
+//		{
+//			stopMove = false;
+//			count = 0;
+//		}
 		
-		if (count >= 4)
-		{
-			stopMove = false;
-			count = 0;
-		}
-		
-	}
+//	}
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		if (coll.gameObject.tag == "Enemy" || coll.gameObject.tag == "Collision") 
